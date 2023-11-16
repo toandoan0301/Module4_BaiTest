@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout:: header(~{::title},~{})">
+    <title>Home</title>
+</head>
+<body>
+<div class="container">
+    <h2 class="text-info text-center border-top-5">List Student</h2>
+    <span th:text="${message}" id="message" style="color: green"></span>
+    <div th:replace="layout:: navbar"></div>
+    <table class="table table-primary table-light table-bordered table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">address</th>
+            <th scope="col">Image</th>
+            <th scope="col">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student: ${students}">
+            <th scope="row" th:text="${student.id}"></th>
+            <td> <a th:href="@{/students/{id}/view(id=${student.id})}" th:text="${student.name}"></a></td>
+            <td th:text="${student.address}"> </td>
+            <td class="text-center"> <img class="image" th:src="@{'/assets/images/'+${student.image}}" alt=""/> </td>
+            <td> <a th:href="@{/students/{id}/edit(id=${student.id})}"><button class="btn btn-info">Edit</button></a>
+                <a onclick="return confirm_delete()" th:href="@{/students/{id}/delete(id=${student.id})}"><button class="btn btn-danger">Delete</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <footer th:replace="layout:: footer"></footer>
+</div>
+<script>
+    setTimeout(() => {
+        document.getElementById("message").innerHTML = "";
+    }, 3000);
+    function confirm_delete(){
+        return confirm("Are you sure you want to delete");
+    }
+
+</script>
+</body>
+</html>

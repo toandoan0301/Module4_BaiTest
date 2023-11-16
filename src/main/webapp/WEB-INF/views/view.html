@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout:: header(~{::title},~{})">
+    <title>View Student</title>
+</head>
+<body>
+<div class="container">
+
+    <h2 class="text-info text-center border-top-5">Student infor</h2>
+    <div th:replace="layout:: navbar"></div>
+    <table class="table">
+        <tr>
+            <th>Student ID:</th>
+            <td th:text="${student.id}"></td>
+        </tr>
+        <tr>
+            <th>Student name:</th>
+            <td th:text="${student.name}"></td>
+        </tr>
+        <tr>
+            <th>Student Address:</th>
+            <td th:text="${student.address}"></td>
+        </tr>
+        <tr>
+            <th>Student image:</th>
+            <td>
+                <img class="image" th:src="@{'/assets/images/'+${student.image}}" alt=""/>
+            </td>
+        </tr>
+
+    </table>
+    <br/>
+    <br/>
+    <footer th:replace="layout:: footer"></footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout:: header(~{::title},~{})">
+    <title>Edit Student</title>
+</head>
+<body>
+<div class="container">
+
+    <h2 class="text-info text-center border-top-5">Edit Student</h2>
+    <div th:replace="layout:: navbar"></div>
+    <form class="border-info align-content-center p-1" th:action="@{/students/update}" method="post" enctype="multipart/form-data" th:object="${student}">
+        <div class="row">
+            <input hidden="hidden" th:field="*{id}">
+            <input hidden="hidden" th:field="*{image}">
+            <div class="mb-3 col-6">
+                <label for="name" class="form-label">Email address</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" >
+            </div>
+            <div class="mb-3 col-6">
+                <label for="address" class="form-label">Email address</label>
+                <input type="text" th:field="*{address}" class="form-control" id="address" >
+            </div>
+            <div class="mb-3 col-6">
+                <label for="imgFile" class="form-label">Email address</label>
+                <input type="file" th:field="*{imageFile}" class="form-control" id="imgFile" >
+            </div>
+            <div class="mb-3 col-6 align-content-center">
+                <img class="image" th:src="@{'/assets/images/'+*{image}}" alt="">
+            </div>
+        </div>
+        <div class="align-content-center">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+
+    </form>
+    <br/>
+    <br/>
+    <footer th:replace="layout:: footer"></footer>
+</div>
+
+</body>
+</html>
